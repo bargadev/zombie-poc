@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ZOMBIE-POC — Three.js Survival</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div id="crosshair">
+        <span class="ch-line ch-top"></span>
+        <span class="ch-line ch-bottom"></span>
+        <span class="ch-line ch-left"></span>
+        <span class="ch-line ch-right"></span>
+      </div>
+
+      <div id="hud-top">
+        <div class="stat">
+          <span class="label">WAVE</span>
+          <span id="wave" class="value">1</span>
+        </div>
+        <div class="stat">
+          <span class="label">SCORE</span>
+          <span id="score" class="value">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">ZUMBIS</span>
+          <span id="remaining" class="value">0</span>
+        </div>
+      </div>
+
+      <div id="hud-bottom">
+        <div id="health-wrap">
+          <div class="label">VIDA</div>
+          <div id="health-bar"><div id="health-fill"></div></div>
+        </div>
+        <div id="ammo-wrap">
+          <div id="weapon-name">Pistola</div>
+          <span id="ammo">12</span><span class="ammo-sep">/</span><span id="ammo-max">12</span>
+          <div id="reload-hint" class="hidden">RECARREGANDO…</div>
+        </div>
+      </div>
+
+      <div id="toast"></div>
+      <div id="hitflash"></div>
+    </div>
+
+    <!-- Weapon picker (B) -->
+    <div id="weapon-menu" class="hidden">
+      <div class="wm-panel">
+        <h2>ARMAS <span>[B]</span></h2>
+        <div id="weapon-grid"></div>
+        <p class="wm-hint">Clique ou tecle <kbd>1</kbd>–<kbd>5</kbd> &nbsp;·&nbsp; <kbd>B</kbd>/<kbd>Esc</kbd> fecha</p>
+      </div>
+    </div>
+
+    <!-- Menu / Start -->
+    <div id="overlay">
+      <div class="panel">
+        <h1>ZOMBIE<span>·POC</span></h1>
+        <p class="tagline">Over-shoulder · 16 zumbis (+animais) · 5 armas · WebGL · Three.js</p>
+        <div class="controls">
+          <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> mover &nbsp;·&nbsp; <kbd>Space</kbd> pular</div>
+          <div><kbd>Mouse</kbd> mirar &nbsp;·&nbsp; <kbd>Click</kbd> atirar &nbsp;·&nbsp; <kbd>Botão dir.</kbd> mira (ADS)</div>
+          <div><kbd>Shift</kbd> correr &nbsp;·&nbsp; <kbd>R</kbd> recarregar</div>
+          <div><kbd>B</kbd> trocar arma &nbsp;·&nbsp; <kbd>1</kbd>–<kbd>5</kbd> rápido</div>
+          <div><kbd>C</kbd> (segurar) ver de frente &nbsp;·&nbsp; <kbd>Esc</kbd> pausar</div>
+        </div>
+        <div class="setting">
+          <label for="brightness">BRILHO</label>
+          <input id="brightness" type="range" min="0.6" max="2.8" step="0.05" value="1.45" />
+        </div>
+        <button id="start-btn">INICIAR</button>
+        <p id="overlay-sub">Clique para travar o mouse</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
