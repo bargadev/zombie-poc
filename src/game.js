@@ -189,7 +189,7 @@ addEventListener('keydown', (e) => {
 
 // ---------------------------------------------------------------- main loop
 function tick() {
-  setTimeout(tick, 0);                     // FPS livre: ignora o vsync do rAF (teto = refresh do monitor)
+  requestAnimationFrame(tick);             // vsync-aligned: frame pacing suave (FPS livre via setTimeout dá judder)
   const raw = clock.getDelta();           // unclamped: true frame time for FPS
   const dt = Math.min(raw, 0.05);
 
