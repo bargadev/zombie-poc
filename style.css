@@ -24,6 +24,15 @@ canvas { display: block; }
 
 .hidden { display: none !important; }
 
+/* ---------- FPS counter ---------- */
+#perf {
+  position: fixed; top: 8px; left: 10px; z-index: 50;
+  font: 12px/1.2 "Courier New", ui-monospace, monospace;
+  color: rgba(214,255,214,.55); pointer-events: none;
+  text-shadow: 0 0 3px rgba(0,0,0,.9); letter-spacing: .03em;
+}
+#perf b { font-weight: 700; color: var(--green); }
+
 /* ---------- HUD ---------- */
 #hud { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
 

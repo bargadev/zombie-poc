@@ -10,7 +10,20 @@ export const ui = {
   weaponName: el('weapon-name'),
   weaponMenu: el('weapon-menu'), weaponGrid: el('weapon-grid'),
   panel: document.querySelector('.panel'), overlaySub: el('overlay-sub'),
+  perfFps: el('perf-fps'),
 };
+
+// Smoothed FPS readout, throttled to ~4 Hz so the DOM write isn't itself a cost.
+let _fps = 60, _acc = 0;
+export function setPerf(rawDt, dt) {
+  _fps += (1 / Math.max(rawDt, 1e-4) - _fps) * 0.1;
+  _acc += dt;
+  if (_acc < 0.25) return;
+  _acc = 0;
+  const v = Math.round(_fps);
+  ui.perfFps.textContent = v;
+  ui.perfFps.style.color = v >= 50 ? 'var(--green)' : v >= 30 ? '#e8d24a' : '#e0564a';
+}
 
 let toastT = 0;
 export function toast(msg, dur = 1.6) { ui.toast.textContent = msg; ui.toast.classList.add('show'); toastT = dur; }

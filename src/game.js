@@ -190,7 +190,8 @@ addEventListener('keydown', (e) => {
 // ---------------------------------------------------------------- main loop
 function tick() {
   requestAnimationFrame(tick);
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const raw = clock.getDelta();           // unclamped: true frame time for FPS
+  const dt = Math.min(raw, 0.05);
 
   if (game.state === 'playing' && look.locked && !game.weaponMenu) {
     if (game.fireT > 0) game.fireT -= dt;
@@ -212,6 +213,7 @@ function tick() {
   }
 
   hud.tickToast(dt);
+  hud.setPerf(raw, dt);
   updateFx(clock.elapsedTime);
   composer.render();
 }
