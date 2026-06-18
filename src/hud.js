@@ -16,6 +16,7 @@ export const ui = {
 // Smoothed FPS readout, throttled to ~4 Hz so the DOM write isn't itself a cost.
 let _fps = 60, _acc = 0;
 export function setPerf(rawDt, dt) {
+  if (!ui.perfFps) return;                 // never let a missing element kill the loop
   _fps += (1 / Math.max(rawDt, 1e-4) - _fps) * 0.1;
   _acc += dt;
   if (_acc < 0.25) return;
